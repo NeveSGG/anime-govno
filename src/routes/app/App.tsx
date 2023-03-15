@@ -1,11 +1,22 @@
-import { FC, useState } from 'react'
+import { FC, useState, memo } from 'react'
+import { clsx } from 'clsx';
+import { ContainerState } from '../../types/Types';
+import CalcContainer from '../../components/calcContainer';
+import CalcSwitcher from '../../components/calcSwitcher';
 
 const App: FC = () => {
+  const [container, setContainer] = useState<ContainerState>(ContainerState.Unhovered);
   return (
-    <div className="m-5 h-[448px] w-60 outline-dashed outline-2 outline-zinc-300 rounded-md ">
-      aabc
+    <div className={clsx(
+      'm-5',
+      'flex',
+      'flex-col',
+      'gap-3'
+    )}>
+      <CalcSwitcher />
+      <CalcContainer container={container}/>
     </div>
   )
 }
 
-export default App
+export default memo(App);
